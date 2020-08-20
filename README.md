@@ -1,2 +1,2 @@
-# capacitor-pusher-beam
+# capacitor-pusher-beams
 Capacitor Plugin for Pusher Beams API
