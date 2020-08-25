@@ -25,7 +25,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 @NativePlugin()
-public class CapacitorPusherBeamsAuth extends Plugin {
+public class PusherBeams extends Plugin {
 
     @PluginMethod()
     public void addDeviceInterest(PluginCall call) {
