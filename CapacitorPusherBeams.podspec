@@ -14,4 +14,5 @@ Pod::Spec.new do |s|
   s.ios.deployment_target  = '11.0'
   s.dependency 'Capacitor'
   s.swift_version = '5.1'
+  s.xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => "${PODS_CONFIGURATION_BUILD_DIR}/PushNotifications" }
 end

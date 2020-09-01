@@ -53,8 +53,9 @@ public class PusherBeams: CAPPlugin {
     }
     
     @objc func setUserID(_ call: CAPPluginCall) {
-        let userId = call.getString("userId") ?? ""
-        let tokenProvider = BeamsTokenProvider(authURL: self.beamUrl) { () -> AuthData in
+        let beamsAuthURl = call.getString("beamsAuthURL") ?? "";
+        let userId = call.getString("userID") ?? ""
+        let tokenProvider = BeamsTokenProvider(authURL: beamsAuthURl) { () -> AuthData in
           let sessionToken = "SESSION-TOKEN"
           let headers = ["Authorization": "Bearer \(sessionToken)"] // Headers your auth endpoint needs
           let queryParams: [String: String] = [:] // URL query params your auth endpoint needs
@@ -81,8 +82,10 @@ public class PusherBeams: CAPPlugin {
         call.success()
     }
 
-    @objc func stop() {
-        self.beamclient.stop()
+    @objc func stop(_ call: CAPPluginCall) {
+        self.beamsClient.stop{
+            print("Stopped!")
+        }
         call.success()
     }
     

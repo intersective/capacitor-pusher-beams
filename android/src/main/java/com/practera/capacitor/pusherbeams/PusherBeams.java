@@ -57,7 +57,7 @@ public class PusherBeams extends Plugin {
     }
 
     @PluginMethod()
-    public  void clearDeviceInterests(PluginCall call) {
+    public void clearDeviceInterests(PluginCall call) {
         PushNotifications.clearDeviceInterests();
         call.success();
     }
@@ -84,7 +84,7 @@ public class PusherBeams extends Plugin {
                 }
             );
         // BeamsTokenProvider tokenProvider = setupTokenProvider(beamsAuthURl);
-
+        Log.i("tokenProvider", String.valueOf(tokenProvider));
         PushNotifications.setUserId(userID, tokenProvider, new BeamsCallback<Void, PusherCallbackError>(){
             @Override
             public void onSuccess(Void... values) {
