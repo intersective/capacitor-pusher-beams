@@ -65,43 +65,63 @@ public class PusherBeams extends Plugin {
 
     @PluginMethod()
     public void setUserID(final PluginCall call) {
-        String beamsAuthURl = call.getString("beamsAuthURL");
+        String beamsAuthURl = call.getString("beamsAuthURL", "");
         String userID = call.getString("userID");
-        JSObject headers = call.getObject("headers");
-        final HashMap headersHashMap = hashMapOf(headers);
+        JSObject headers = call.getObject("headers", new JSObject());
 
-        BeamsTokenProvider tokenProvider = new BeamsTokenProvider(
-                beamsAuthURl,
-                // url,
-                new AuthDataGetter() {
-                    @Override
-                    public AuthData getAuthData() {
-                        HashMap<String, String> queryParams = new HashMap<>();
-                        return new AuthData(
-                                headersHashMap,
-                                queryParams
-                        );
-                    }
+        final HashMap headersHashMap = convertToHashMap(headers);
+
+        BeamsTokenProvider beamsTokenProvider = new BeamsTokenProvider(
+            beamsAuthURl,
+            new AuthDataGetter() {
+                @Override
+                public AuthData getAuthData() {
+                    HashMap<String, String> queryParams = new HashMap<String, String>();
+                    return new AuthData(
+                        headersHashMap,
+                        queryParams
+                    );
                 }
-            );
+            }
+        );
+
         // BeamsTokenProvider tokenProvider = setupTokenProvider(beamsAuthURl);
-        Log.i("tokenProvider", String.valueOf(tokenProvider));
-        PushNotifications.setUserId(userID, tokenProvider, new BeamsCallback<Void, PusherCallbackError>(){
+        Log.i("tokenProvider", String.valueOf(beamsTokenProvider));
+        PushNotifications.setUserId(userID, beamsTokenProvider, new BeamsCallback<Void, PusherCallbackError>() {
             @Override
             public void onSuccess(Void... values) {
                 JSObject ret = new JSObject();
                 Log.i("PusherBeams", "Successfully authenticated with Pusher Beams");
+
                 ret.put("message", "Successfully authenticated with Pusher Beams");
+                ret.put("success", true);
+                ret.put("raw", values);
                 call.success(ret);
             }
 
             @Override
             public void onFailure(PusherCallbackError error) {
+                Log.i("PusherBeamsError", String.valueOf(error));
                 Log.i("PusherBeams", "Pusher Beams authentication failed: " + error.getMessage());
-                call.reject("Pusher Beams authentication failed: " + error.getMessage());
+
+                ret.put("message", "Pusher Beams authentication failed: " + error.getMessage());
+                ret.put("success", false);
+                ret.put("raw", error);
+                call.reject(ret);
             }
         });
+    }
 
+    private static HashMap<String, String> convertToHashMap(JSObject headers) {
+        HashMap<String, String> result = new HashMap<String, String>();
+        Iterator<String> keys = headers.keys();
+
+        while (keys.hasNext()) {
+            String key = keys.next();
+            String value = headers.getString(key);
+            result.put(key, value);
+        }
+        return result;
     }
 
     @PluginMethod()
@@ -118,17 +138,6 @@ public class PusherBeams extends Plugin {
         JSObject ret = new JSObject();
         ret.put("success", false);
         call.success(ret);
-    }
-
-    public static HashMap<String, String> hashMapOf(JSObject object) {
-        HashMap<String, String> hashMap = new HashMap<>();
-        Iterator<String> keysIt = object.keys();
-        while (keysIt.hasNext()) {
-            String key = keysIt.next();
-            String value = object.getString(key);
-            hashMap.put(key, value);
-        }
-        return hashMap;
     }
 
     @PluginMethod()
@@ -155,7 +164,7 @@ public class PusherBeams extends Plugin {
         if (this.packageName != null && !this.packageName.isEmpty()) {
             return this.packageName;
         }
-        
+
         return "com.practera.appv2";
     }
 }
