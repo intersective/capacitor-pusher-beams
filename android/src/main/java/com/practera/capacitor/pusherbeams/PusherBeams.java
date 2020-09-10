@@ -26,6 +26,7 @@ import java.util.Set;
 
 @NativePlugin()
 public class PusherBeams extends Plugin {
+     String packageName;
 
     @PluginMethod()
     public void addDeviceInterest(PluginCall call) {
@@ -144,7 +145,17 @@ public class PusherBeams extends Plugin {
         call.success();
     }
     
+    @PluginMethod()
+    private void setPackageName(PluginCall call) {
+        this.packageName = call.getString("packageName");
+        call.success();
+    }
+
     private String getPackageName() {
-        return "com.package.test-name";
+        if (this.packageName != null && !this.packageName.isEmpty()) {
+            return this.packageName;
+        }
+        
+        return "com.practera.appv2";
     }
 }
