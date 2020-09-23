@@ -42,7 +42,8 @@ public class PusherBeams: CAPPlugin {
         
         try? self.beamsClient.setDeviceInterests(interests: interests)
         call.success([
-            "interests": interests
+            "interests": interests,
+            "success": true
         ])
     }
     

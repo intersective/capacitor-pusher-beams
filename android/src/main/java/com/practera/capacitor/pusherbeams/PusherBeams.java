@@ -58,7 +58,7 @@ public class PusherBeams extends Plugin {
         Log.i("packageName::", String.valueOf(packageName));
         
         Set<String> interests = call.getArray("interests", [String: Any].self) else {
-            call.error("Must provide interests array")
+            call.error("Interests must be provided in array type")
             return
         }
 
