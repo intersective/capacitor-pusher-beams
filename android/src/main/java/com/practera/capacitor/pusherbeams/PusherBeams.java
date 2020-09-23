@@ -54,7 +54,20 @@ public class PusherBeams extends Plugin {
 
     @PluginMethod()
     public void setDeviceInterests(PluginCall call) {
-        throw new NullPointerException("PushNotifications setDeviceInterests metheod not implemented yet");
+        String packageName = call.getPackageName();
+        Log.i("packageName::", String.valueOf(packageName));
+        
+        Set<String> interests = call.getArray("interests", [String: Any].self) else {
+            call.error("Must provide interests array")
+            return
+        }
+
+        PushNotifications.setDeviceInterests(interests);
+
+        JSObject ret = new JSObject();
+        ret.put("interests", getDeviceInterests());
+        ret.put("success", true);
+        call.success(ret);
     }
 
     @PluginMethod()
@@ -76,7 +89,7 @@ public class PusherBeams extends Plugin {
             new AuthDataGetter() {
                 @Override
                 public AuthData getAuthData() {
-                    HashMap<String, String> queryParams = new HashMap<String, String>();
+                    HashMap<String, String> queryParams = new HashMap<>();
                     return new AuthData(
                         headersHashMap,
                         queryParams
@@ -85,8 +98,6 @@ public class PusherBeams extends Plugin {
             }
         );
 
-        // BeamsTokenProvider tokenProvider = setupTokenProvider(beamsAuthURl);
-        Log.i("tokenProvider", String.valueOf(beamsTokenProvider));
         PushNotifications.setUserId(userID, beamsTokenProvider, new BeamsCallback<Void, PusherCallbackError>() {
             @Override
             public void onSuccess(Void... values) {
@@ -101,13 +112,14 @@ public class PusherBeams extends Plugin {
 
             @Override
             public void onFailure(PusherCallbackError error) {
+                JSObject ret = new JSObject();
                 Log.i("PusherBeamsError", String.valueOf(error));
                 Log.i("PusherBeams", "Pusher Beams authentication failed: " + error.getMessage());
 
                 ret.put("message", "Pusher Beams authentication failed: " + error.getMessage());
                 ret.put("success", false);
                 ret.put("raw", error);
-                call.reject(ret);
+                call.reject(error.getMessage());
             }
         });
     }
