@@ -64,6 +64,7 @@ public class PusherBeams extends Plugin {
                 PushNotifications.addDeviceInterest(interest.toString());
             } else {
                 Log.i("set-interest::", "wrong format");
+                call.reject("Wrong format provided, should follow String[]");
             }
         }
 
