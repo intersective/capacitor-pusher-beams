@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.provider.Settings;
 import android.util.Log;
 
+import com.getcapacitor.JSArray;
 import com.getcapacitor.JSObject;
 import com.getcapacitor.NativePlugin;
 import com.getcapacitor.Plugin;
@@ -19,6 +20,8 @@ import com.pusher.pushnotifications.PusherCallbackError;
 import com.pusher.pushnotifications.auth.AuthData;
 import com.pusher.pushnotifications.auth.AuthDataGetter;
 import com.pusher.pushnotifications.auth.BeamsTokenProvider;
+
+import org.json.JSONException;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -53,19 +56,20 @@ public class PusherBeams extends Plugin {
     }
 
     @PluginMethod()
-    public void setDeviceInterests(PluginCall call) {
-        String packageName = call.getPackageName();
-        Log.i("packageName::", String.valueOf(packageName));
-        
-        Set<String> interests = call.getArray("interests", [String: Any].self) else {
-            call.error("Interests must be provided in array type")
-            return
+    public void setDeviceInterests(PluginCall call) throws JSONException {
+        JSArray interests = call.getArray("interests");
+
+        for (Object interest: interests.toList()) {
+            if (interest != null) {
+                PushNotifications.addDeviceInterest(interest.toString());
+            } else {
+                Log.i("set-interest::", "wrong format");
+            }
         }
 
-        PushNotifications.setDeviceInterests(interests);
-
         JSObject ret = new JSObject();
-        ret.put("interests", getDeviceInterests());
+        Set<String> registered = PushNotifications.getDeviceInterests();
+        ret.put("interests", registered);
         ret.put("success", true);
         call.success(ret);
     }
