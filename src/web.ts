@@ -9,28 +9,33 @@ export class PusherBeamsWeb extends WebPlugin implements PusherBeamsPlugin {
     });
   }
 
-  addDeviceInterest(options: { interest: string; }): Promise<{ message: string; }> {
+  async addDeviceInterest(options: { interest: string; }): Promise<{ message: string; }> {
     console.log(options);
     throw new Error("Method not implemented.");
   }
 
   async removeDeviceInterest(options: { interest: string }): Promise<{ success: boolean }> {
     console.log('removeDeviceInterest::', options);
+    console.log('removeDeviceInterest:: Method not implemented.')
     return { success : true };
   }
 
-  setUserID(options: { beamsAuthURL: string; userID: string; headers: JSON; }): Promise<string | { message: string; }> {
+  async setUserID(options: { beamsAuthURL: string; userID: string; headers: JSON; }): Promise<string | { message: string; }> {
     console.log(options);
-    throw new Error("setUserID :: Method not implemented.");
+    // throw new Error("setUserID :: Method not implemented.");
+    return { message: 'success'};
   }
 
-  getDeviceInterests(options: { interests: string[] }): Promise<{ interests: string[] }> {
+  async getDeviceInterests(options: { interests: string[] }): Promise<{ interests: string[] }> {
     console.log(options);
-    throw new Error("getDeviceInterests :: Method not implemented.");
+    // throw new Error("getDeviceInterests :: Method not implemented.");
+    return { interests: options.interests };
   }
   
-  setDeviceInterests(): Promise<{ success: boolean }> {
-    throw new Error("setDeviceInterests :: Method not implemented.");
+  async setDeviceInterests(): Promise<{ success: boolean }> {
+    // throw new Error("setDeviceInterests :: Method not implemented.");
+    console.log('None set on browser :: Method not implemented.')
+    return { success: true };
   }
 
   async clearDeviceInterests(): Promise<{success: boolean}> {
@@ -46,11 +51,6 @@ export class PusherBeamsWeb extends WebPlugin implements PusherBeamsPlugin {
   async stop(): Promise<{success: boolean}> {
     console.log('CapacitorPusherBeamsAuthWeb :: stop');
     return {success: true};
-  }
-
-  async goToAppSetting(options: {value: any}): Promise<{value: any}> {
-    const anything = options.value  || `Capacitor Push Beams Auth :: TESTING`;
-    return anything;
   }
 }
 

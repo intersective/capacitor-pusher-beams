@@ -12,5 +12,4 @@ CAP_PLUGIN(PusherBeams, "PusherBeams",
            CAP_PLUGIN_METHOD(setUserID, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(clearAllState, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(stop, CAPPluginReturnPromise);
-           CAP_PLUGIN_METHOD(goToAppSetting, CAPPluginReturnPromise);
 )

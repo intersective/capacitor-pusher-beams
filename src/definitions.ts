@@ -13,5 +13,4 @@ export interface PusherBeamsPlugin {
   setUserID(options: { beamsAuthURL: string, userID: string, headers: JSON }): Promise<{message: string } | string>;
   clearAllState(): Promise<{ success: boolean }>;
   stop(): Promise<{ success: boolean }>;
-  goToAppSetting(options: { value: string }): Promise<{value: string}>;
 }
