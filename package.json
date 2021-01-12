@@ -1,6 +1,6 @@
 {
   "name": "capacitor-pusher-beams",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Capacitor plugin for Pusher Beams API",
   "main": "dist/plugin.js",
   "module": "dist/esm/index.js",
