@@ -112,7 +112,7 @@ public class PusherBeams extends Plugin {
                 ret.put("message", "Successfully authenticated with Pusher Beams");
                 ret.put("success", true);
                 ret.put("raw", values);
-                call.success(ret);
+                return call.success(ret);
             }
 
             @Override
@@ -124,7 +124,7 @@ public class PusherBeams extends Plugin {
                 ret.put("message", "Pusher Beams authentication failed: " + error.getMessage());
                 ret.put("success", false);
                 ret.put("raw", error);
-                call.reject(error.getMessage());
+                return call.reject(error.getMessage());
             }
         });
     }
@@ -156,7 +156,7 @@ public class PusherBeams extends Plugin {
         ret.put("success", false);
         call.success(ret);
     }
-    
+
     @PluginMethod()
     private void setPackageName(PluginCall call) {
         this.packageName = call.getString("packageName");
