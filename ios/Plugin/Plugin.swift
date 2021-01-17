@@ -53,32 +53,42 @@ public class PusherBeams: CAPPlugin {
         call.success()
     }
     
+    func correctAges(headers:[String:Any])->[String:String] {
+        var result:[String:String] = [:]
+        for (key, val) in headers {
+            result[key] = String(describing: val)
+        }
+        return result
+    }
+    
     @objc func setUserID(_ call: CAPPluginCall) {
         let beamsAuthURl = call.getString("beamsAuthURL") ?? "";
-        let userId = call.getString("userID") ?? ""
+        let userId = call.getString("userID") ?? "";
+        let headersParams = call.getObject("headers") ?? [:];
+        print(headersParams);
+        
         let tokenProvider = BeamsTokenProvider(authURL: beamsAuthURl) { () -> AuthData in
-          let sessionToken = "SESSION-TOKEN"
-          let headers = ["Authorization": "Bearer \(sessionToken)"] // Headers your auth endpoint needs
-          let queryParams: [String: String] = [:] // URL query params your auth endpoint needs
-          return AuthData(headers: headers, queryParams: queryParams)
+            let headers: [String: String] = self.correctAges(headers: headersParams);
+            let queryParams: [String: String] = [:] // URL query params your auth endpoint needs
+            return AuthData(headers: headers, queryParams: queryParams)
         }
 
         self.beamsClient.setUserId(userId, tokenProvider: tokenProvider, completion: { error in
-          guard error == nil else {
-              print(error.debugDescription)
-              return
-          }
+            guard error == nil else {
+                print(error.debugDescription)
+                return
+            }
 
-          print("Successfully authenticated with Pusher Beams")
-          call.success([
-            "associatedUser": userId
-          ])
+            print("Successfully authenticated with Pusher Beams")
+            call.success([
+                "associatedUser": userId
+            ])
         })
     }
     
     @objc func clearAllState(_ call: CAPPluginCall) {
         self.beamsClient.clearAllState {
-          print("state cleared")
+            print("state cleared")
         }
         call.success()
     }
