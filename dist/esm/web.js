@@ -14,56 +14,53 @@ export class PusherBeamsWeb extends WebPlugin {
             name: 'PusherBeams',
             platforms: ['web'],
         });
+        this.nativeOnly = "Method not implemented for web browser.";
     }
     addDeviceInterest(options) {
         return __awaiter(this, void 0, void 0, function* () {
             console.log(options);
-            throw new Error("Method not implemented.");
+            throw new Error(this.nativeOnly);
         });
     }
     removeDeviceInterest(options) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log('removeDeviceInterest::', options);
-            console.log('removeDeviceInterest:: Method not implemented.');
+            console.log(this.nativeOnly, options);
             return { success: true };
         });
     }
     setUserID(options) {
         return __awaiter(this, void 0, void 0, function* () {
             console.log(options);
-            // throw new Error("setUserID :: Method not implemented.");
             return { message: 'success' };
         });
     }
-    getDeviceInterests(options) {
+    getDeviceInterests() {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log(options);
-            // throw new Error("getDeviceInterests :: Method not implemented.");
-            return { interests: options.interests };
+            console.log(this.nativeOnly);
+            return { interests: [] };
         });
     }
-    setDeviceInterests() {
+    setDeviceInterests(interests) {
         return __awaiter(this, void 0, void 0, function* () {
-            // throw new Error("setDeviceInterests :: Method not implemented.");
-            console.log('None set on browser :: Method not implemented.');
-            return { success: true };
+            console.log(this.nativeOnly);
+            return { interests };
         });
     }
     clearDeviceInterests() {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log('CapacitorPusherBeamsAuthWeb :: clearDeviceInterests');
+            console.log(this.nativeOnly);
             return { success: true };
         });
     }
     clearAllState() {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log('CapacitorPusherBeamsAuthWeb :: clearAllState');
+            console.log(this.nativeOnly);
             return { success: true };
         });
     }
     stop() {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log('CapacitorPusherBeamsAuthWeb :: stop');
+            console.log(this.nativeOnly);
             return { success: true };
         });
     }

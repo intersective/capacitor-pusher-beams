@@ -14,13 +14,11 @@ export interface PusherBeamsPlugin {
     }): Promise<{
         success: boolean;
     }>;
-    getDeviceInterests(options: {
-        interests: string[];
-    }): Promise<{
+    setDeviceInterests(interests: string[]): Promise<{
         interests: string[];
     }>;
-    setDeviceInterests(): Promise<{
-        success: boolean;
+    getDeviceInterests(): Promise<{
+        interests: string[];
     }>;
     clearDeviceInterests(): Promise<{
         success: boolean;

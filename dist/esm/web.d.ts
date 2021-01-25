@@ -1,6 +1,7 @@
 import { WebPlugin } from '@capacitor/core';
 import { PusherBeamsPlugin } from './definitions';
 export declare class PusherBeamsWeb extends WebPlugin implements PusherBeamsPlugin {
+    private nativeOnly;
     constructor();
     addDeviceInterest(options: {
         interest: string;
@@ -19,13 +20,11 @@ export declare class PusherBeamsWeb extends WebPlugin implements PusherBeamsPlug
     }): Promise<string | {
         message: string;
     }>;
-    getDeviceInterests(options: {
-        interests: string[];
-    }): Promise<{
+    getDeviceInterests(): Promise<{
         interests: string[];
     }>;
-    setDeviceInterests(): Promise<{
-        success: boolean;
+    setDeviceInterests(interests: string[]): Promise<{
+        interests: string[];
     }>;
     clearDeviceInterests(): Promise<{
         success: boolean;
