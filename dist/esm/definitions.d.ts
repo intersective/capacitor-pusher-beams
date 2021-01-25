@@ -3,6 +3,10 @@ declare module '@capacitor/core' {
         PusherBeams: PusherBeamsPlugin;
     }
 }
+export interface TokenProviderHeader {
+    apikey: string;
+    appkey: string;
+}
 export interface PusherBeamsPlugin {
     addDeviceInterest(options: {
         interest: string;
@@ -26,7 +30,7 @@ export interface PusherBeamsPlugin {
     setUserID(options: {
         beamsAuthURL: string;
         userID: string;
-        headers: JSON;
+        headers: TokenProviderHeader;
     }): Promise<{
         message: string;
     } | string>;

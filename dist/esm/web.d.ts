@@ -1,5 +1,5 @@
 import { WebPlugin } from '@capacitor/core';
-import { PusherBeamsPlugin } from './definitions';
+import { PusherBeamsPlugin, TokenProviderHeader } from './definitions';
 export declare class PusherBeamsWeb extends WebPlugin implements PusherBeamsPlugin {
     private nativeOnly;
     constructor();
@@ -16,7 +16,7 @@ export declare class PusherBeamsWeb extends WebPlugin implements PusherBeamsPlug
     setUserID(options: {
         beamsAuthURL: string;
         userID: string;
-        headers: JSON;
+        headers: TokenProviderHeader;
     }): Promise<string | {
         message: string;
     }>;

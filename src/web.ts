@@ -1,5 +1,5 @@
 import { WebPlugin } from '@capacitor/core';
-import { PusherBeamsPlugin } from './definitions';
+import { PusherBeamsPlugin, TokenProviderHeader } from './definitions';
 
 export class PusherBeamsWeb extends WebPlugin implements PusherBeamsPlugin {
   private nativeOnly = "Method not implemented for web browser.";
@@ -20,7 +20,7 @@ export class PusherBeamsWeb extends WebPlugin implements PusherBeamsPlugin {
     return { success : true };
   }
 
-  async setUserID(options: { beamsAuthURL: string; userID: string; headers: JSON; }): Promise<string | { message: string; }> {
+  async setUserID(options: { beamsAuthURL: string; userID: string; headers: TokenProviderHeader; }): Promise<string | { message: string; }> {
     console.log(options);
     return { message: 'success'};
   }
