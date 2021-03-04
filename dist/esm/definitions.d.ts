@@ -18,7 +18,9 @@ export interface PusherBeamsPlugin {
     }): Promise<{
         success: boolean;
     }>;
-    setDeviceInterests(interests: string[]): Promise<{
+    setDeviceInterests(options: {
+        interests: string[];
+    }): Promise<{
         interests: string[];
     }>;
     getDeviceInterests(): Promise<{

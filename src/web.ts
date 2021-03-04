@@ -30,9 +30,9 @@ export class PusherBeamsWeb extends WebPlugin implements PusherBeamsPlugin {
     return { interests: [] };
   }
   
-  async setDeviceInterests(interests: string[]): Promise<{ interests: string[] }> {
+  async setDeviceInterests(options: { interests: string[] }): Promise<{ interests: string[] }> {
     console.log(this.nativeOnly);
-    return { interests };
+    return { interests: options.interests };
   }
 
   async clearDeviceInterests(): Promise<{success: boolean}> {

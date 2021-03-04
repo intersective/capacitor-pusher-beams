@@ -23,7 +23,9 @@ export declare class PusherBeamsWeb extends WebPlugin implements PusherBeamsPlug
     getDeviceInterests(): Promise<{
         interests: string[];
     }>;
-    setDeviceInterests(interests: string[]): Promise<{
+    setDeviceInterests(options: {
+        interests: string[];
+    }): Promise<{
         interests: string[];
     }>;
     clearDeviceInterests(): Promise<{

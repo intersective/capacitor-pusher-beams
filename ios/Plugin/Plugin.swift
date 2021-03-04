@@ -35,6 +35,7 @@ public class PusherBeams: CAPPlugin {
     }
     
     @objc func setDeviceInterests(_ call: CAPPluginCall) {
+        print(call.options["interests"])
         guard let interests = call.options["interests"] as? [String] else {
             call.reject("Interests must be provided in array type")
             return

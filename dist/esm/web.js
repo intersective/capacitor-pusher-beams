@@ -40,10 +40,10 @@ export class PusherBeamsWeb extends WebPlugin {
             return { interests: [] };
         });
     }
-    setDeviceInterests(interests) {
+    setDeviceInterests(options) {
         return __awaiter(this, void 0, void 0, function* () {
             console.log(this.nativeOnly);
-            return { interests };
+            return { interests: options.interests };
         });
     }
     clearDeviceInterests() {
