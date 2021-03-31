@@ -73,6 +73,8 @@ var capacitorPlugin = (function (exports, core) {
     exports.PusherBeams = PusherBeams;
     exports.PusherBeamsWeb = PusherBeamsWeb;
 
+    Object.defineProperty(exports, '__esModule', { value: true });
+
     return exports;
 
 }({}, capacitorExports));
