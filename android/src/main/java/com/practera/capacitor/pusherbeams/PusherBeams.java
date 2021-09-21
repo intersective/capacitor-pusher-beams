@@ -1,35 +1,35 @@
 package com.practera.capacitor.pusherbeams;
 
 public class PusherBeams {
-    public void addDeviceInterest(String value) {
+    public String addDeviceInterest(String value) {
         return value;
     }
 
-    public void removeDeviceInterest(value) {
+    public String removeDeviceInterest(String value) {
         return value;
     }
 
-    public void getDeviceInterests(value) {
+    public String getDeviceInterests(String value) {
         return value;
     }
 
-    public void setDeviceInterests(value) {
+    public String setDeviceInterests(String value) {
         return value;
     }
 
-    public void clearDeviceInterests(value) {
+    public String clearDeviceInterests(String value) {
         return value;
     }
 
-    public void setUserID(value) {
+    public String setUserID(String value) {
         return value;
     }
 
-    public void clearAllState(value) {
+    public String clearAllState(String value) {
         return value;
     }
 
-    public void stop(value) {
+    public String stop(String value) {
         return value;
     }
 }

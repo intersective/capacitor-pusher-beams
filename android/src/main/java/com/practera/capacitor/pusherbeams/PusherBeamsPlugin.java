@@ -28,7 +28,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 @CapacitorPlugin(name = "PusherBeams")
-public class PusherBeams extends Plugin {
+public class PusherBeamsPlugin extends Plugin {
     private PusherBeams implementation = new PusherBeams();
 
     String packageName;
