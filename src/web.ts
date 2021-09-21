@@ -1,5 +1,5 @@
 import { WebPlugin } from '@capacitor/core';
-import { PusherBeamsPlugin, TokenProviderHeader } from './definitions';
+import type { PusherBeamsPlugin, TokenProviderHeader } from './definitions';
 
 export class PusherBeamsWeb extends WebPlugin implements PusherBeamsPlugin {
   private nativeOnly = "Method not implemented for web browser.";
@@ -50,10 +50,3 @@ export class PusherBeamsWeb extends WebPlugin implements PusherBeamsPlugin {
     return {success: true};
   }
 }
-
-const PusherBeams = new PusherBeamsWeb();
-
-export { PusherBeams };
-
-import { registerWebPlugin } from '@capacitor/core';
-registerWebPlugin(PusherBeams);
