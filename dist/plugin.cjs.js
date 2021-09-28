@@ -1,5 +1,14 @@
-import { WebPlugin } from '@capacitor/core';
-export class PusherBeamsWeb extends WebPlugin {
+'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+var core = require('@capacitor/core');
+
+const PusherBeams = core.registerPlugin('PusherBeams', {
+    web: () => Promise.resolve().then(function () { return web; }).then(m => new m.PusherBeamsWeb()),
+});
+
+class PusherBeamsWeb extends core.WebPlugin {
     constructor() {
         super({
             name: 'PusherBeams',
@@ -40,4 +49,11 @@ export class PusherBeamsWeb extends WebPlugin {
         return { success: true };
     }
 }
-//# sourceMappingURL=web.js.map
+
+var web = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    PusherBeamsWeb: PusherBeamsWeb
+});
+
+exports.PusherBeams = PusherBeams;
+//# sourceMappingURL=plugin.cjs.js.map

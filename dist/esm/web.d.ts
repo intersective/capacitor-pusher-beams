@@ -1,5 +1,5 @@
 import { WebPlugin } from '@capacitor/core';
-import { PusherBeamsPlugin, TokenProviderHeader } from './definitions';
+import type { PusherBeamsPlugin, TokenProviderHeader } from './definitions';
 export declare class PusherBeamsWeb extends WebPlugin implements PusherBeamsPlugin {
     private nativeOnly;
     constructor();
@@ -38,5 +38,3 @@ export declare class PusherBeamsWeb extends WebPlugin implements PusherBeamsPlug
         success: boolean;
     }>;
 }
-declare const PusherBeams: PusherBeamsWeb;
-export { PusherBeams };

@@ -1,8 +1,3 @@
-declare module '@capacitor/core' {
-    interface PluginRegistry {
-        PusherBeams: PusherBeamsPlugin;
-    }
-}
 export interface TokenProviderHeader {
     apikey: string;
     appkey: string;

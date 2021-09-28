@@ -1,0 +1,143 @@
+{
+  "api": {
+    "name": "PusherBeamsPlugin",
+    "slug": "pusherbeamsplugin",
+    "docs": "",
+    "tags": [],
+    "methods": [
+      {
+        "name": "addDeviceInterest",
+        "signature": "(options: { interest: string; }) => any",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ interest: string; }"
+          }
+        ],
+        "returns": "any",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "adddeviceinterest"
+      },
+      {
+        "name": "removeDeviceInterest",
+        "signature": "(options: { interest: string; }) => any",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ interest: string; }"
+          }
+        ],
+        "returns": "any",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "removedeviceinterest"
+      },
+      {
+        "name": "setDeviceInterests",
+        "signature": "(options: { interests: string[]; }) => any",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ interests: {}; }"
+          }
+        ],
+        "returns": "any",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "setdeviceinterests"
+      },
+      {
+        "name": "getDeviceInterests",
+        "signature": "() => any",
+        "parameters": [],
+        "returns": "any",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "getdeviceinterests"
+      },
+      {
+        "name": "clearDeviceInterests",
+        "signature": "() => any",
+        "parameters": [],
+        "returns": "any",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "cleardeviceinterests"
+      },
+      {
+        "name": "setUserID",
+        "signature": "(options: { beamsAuthURL: string; userID: string; headers: TokenProviderHeader; }) => any",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ beamsAuthURL: string; userID: string; headers: TokenProviderHeader; }"
+          }
+        ],
+        "returns": "any",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [
+          "TokenProviderHeader"
+        ],
+        "slug": "setuserid"
+      },
+      {
+        "name": "clearAllState",
+        "signature": "() => any",
+        "parameters": [],
+        "returns": "any",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "clearallstate"
+      },
+      {
+        "name": "stop",
+        "signature": "() => any",
+        "parameters": [],
+        "returns": "any",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "stop"
+      }
+    ],
+    "properties": []
+  },
+  "interfaces": [
+    {
+      "name": "TokenProviderHeader",
+      "slug": "tokenproviderheader",
+      "docs": "",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "apikey",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "appkey",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "string"
+        }
+      ]
+    }
+  ],
+  "enums": []
+}
