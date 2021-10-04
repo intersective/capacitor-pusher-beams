@@ -3,16 +3,10 @@ import type { PusherBeamsPlugin, TokenProviderHeader } from './definitions';
 
 export class PusherBeamsWeb extends WebPlugin implements PusherBeamsPlugin {
   private nativeOnly = "Method not implemented for web browser.";
-  constructor() {
-    super({
-      name: 'PusherBeams',
-      platforms: ['web'],
-    });
-  }
-
+  
   async addDeviceInterest(options: { interest: string; }): Promise<{ message: string; }> {
     console.log(options);
-    throw new Error(this.nativeOnly);
+    throw this.unimplemented(this.nativeOnly);
   }
 
   async removeDeviceInterest(options: { interest: string }): Promise<{ success: boolean }> {
