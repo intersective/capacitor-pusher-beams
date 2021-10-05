@@ -6,10 +6,9 @@ import PushNotifications
  * Please read the Capacitor iOS Plugin Development Guide
  * here: https://capacitorjs.com/docs/plugins/ios
  */
-@objc(PusherBeams)
-public class PusherBeams: CAPPlugin {
-
-    let beamUrl = "test.com"
+@objc(PusherBeamsPlugin)
+public class PusherBeamsPlugin: CAPPlugin {
+    private let implementation = PusherBeams()
     let beamsClient = PushNotifications.shared
     
     @objc func addDeviceInterest(_ call: CAPPluginCall) {
